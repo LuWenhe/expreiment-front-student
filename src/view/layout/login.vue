@@ -142,8 +142,8 @@ export default {
                     localStorage.setItem("role",res.data.data.role);
                     localStorage.setItem("token",res.data.token);
                     localStorage.setItem("avatar_image",res.data.data.avatar_image)
-                    //this.$router.push('/frontAdmin/mainPage');
-                    this.$router.push('/mainPage');
+                    this.$router.push('/frontAdmin/mainPage');
+                    //this.$router.push('/mainPage');
 
                   }else {
                     this.$message.error("登录失败");

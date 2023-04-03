@@ -27,10 +27,10 @@
 <!--              active-text-color="#ffd04b"-->
 <!--              style="margin-top: 0%;width: 100%;"-->
 <!--          >-->
-            <el-menu-item index="1" style="margin-left: 25%;font-size: 15px" ><router-link to="/mainPage">首页</router-link></el-menu-item>
-            <el-menu-item index="2" style="font-size: 15px" >  <router-link to="/allLesson">全部课程</router-link>  </el-menu-item>
-            <el-menu-item index="3" style="font-size: 15px" >  <router-link to="/teachTool">教学工具</router-link>  </el-menu-item>
-            <el-menu-item index="5" style="font-size: 15px" > <router-link to="/OnlineIDE">在线编码工具</router-link> </el-menu-item>
+            <el-menu-item index="1" style="margin-left: 25%;font-size: 15px" ><router-link to="/frontAdmin/mainPage">首页</router-link></el-menu-item>
+            <el-menu-item index="2" style="font-size: 15px" >  <router-link to="/frontAdmin/allLesson">全部课程</router-link>  </el-menu-item>
+            <el-menu-item index="3" style="font-size: 15px" >  <router-link to="/frontAdmin/teachTool">教学工具</router-link>  </el-menu-item>
+            <el-menu-item index="5" style="font-size: 15px" > <router-link to="/frontAdmin/OnlineIDE">在线编码工具</router-link> </el-menu-item>
 
             <el-avatar :src="myHeader" style="position: absolute;margin-left:30%;margin-top: 10px"></el-avatar>
 
@@ -85,12 +85,12 @@ export default {
       if (command == 'loginout') {
 
         localStorage.clear();
-        this.$router.push('/login');
+        this.$router.push('/frontAdmin/login');
 
       }
       if(command == 'personInfo'){
 
-        this.$router.push('/personInfo');
+        this.$router.push('/frontAdmin/personInfo');
 
       }
     },
@@ -99,14 +99,14 @@ export default {
     let index = this.$route.path.replace("/", "");
 //获取当前路由地址
     console.log('当前路由='+index);
-    if(index === '/mainPage'){
+    if(index === '/frontAdmin/mainPage'){
       this.activeIndex2 = '1';
-    }else if(index === '/allLesson'){
+    }else if(index === '/frontAdmin/allLesson'){
       this.activeIndex2 = '2';
 
-    }else if(index === '/teachTool'){
+    }else if(index === '/frontAdmin/teachTool'){
       this.activeIndex2 = '3'
-    }else if(index === '/OnlineIDE') {
+    }else if(index === '/frontAdmin/OnlineIDE') {
       this.activeIndex2 = '5'
     }
   }
