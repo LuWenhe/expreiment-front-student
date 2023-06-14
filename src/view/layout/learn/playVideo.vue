@@ -1,5 +1,5 @@
 <template>
-  <div class="background">
+  <el-row class="background">
     <div>
       <el-row>
         <el-col :span="14" :offset="6">
@@ -12,12 +12,12 @@
         </el-col>
       </el-row>
     </div>
-  </div>
+  </el-row>
 </template>
 
 <script>
 import VideoJs from "@/view/layout/learn/VideoJs";
-import 'video.js/dist/video-js.css';
+import 'video.js/dist/video-js.css'
 
 export default {
   name: "playVideo",
@@ -43,13 +43,8 @@ export default {
     }
   },
   created() {
-    console.log(this.$route.query.mp4)
     this.videoOptions.sources[0].src = this.$route.query.mp4;
-  },
-  methods: {
-
-  },
-
+  }
 }
 </script>
 

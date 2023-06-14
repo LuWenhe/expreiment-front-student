@@ -9,7 +9,6 @@ import VueAxios from 'vue-axios';
 import mavonEditor from 'mavon-editor'
 import Viewer from 'v-viewer'
 import * as echarts from 'echarts'; //echarts5.0之后引入的方式
-import {get, post} from "./utils/index";
 import VueVideoPlayer from 'vue-video-player'
 import VueCodeMirror from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
@@ -18,16 +17,9 @@ import 'video.js/dist/video-js.css'
 
 //导入验证码
 import SlideVerify from 'vue-monoplasty-slide-verify';
-Vue.use(SlideVerify);
-
+Vue.use(SlideVerify)
 Vue.use(VueCodeMirror)
 // import 'vue-video-player/src/custom-theme.css'
-Vue.prototype.$http = {
-  get,
-  post
-};
-
-
 
 Vue.use(VueVideoPlayer, /* {
   options: global default options,
@@ -45,33 +37,26 @@ Vue.config.productionTip = false
 
 //使用钩子函数对路由进行权限跳
 router.beforeEach((to, from, next) =>{
-  document.title = `${to.meta.title} | 学员实训平台`;
-  const token = localStorage.getItem('token');
+  document.title = `${to.meta.title} | 学员实训平台`
+  let token = localStorage.getItem('token')
 
-  if (!token && to.path !== '/frontAdmin/login') {
-    next('/frontAdmin/login');
-  }else if(token && to.path == '/frontAdmin/login'){
-    next('/frontAdmin/mainPage')
+  console.log(from.path)
 
-  }else if (to.meta.permission) {
-    console.log(to.path);
-
+  // 如果有登录状态, 则直接跳转, 否则跳转到登录页面
+  if (token) {
+    next()
   } else {
-    if (navigator.userAgent.indexOf('MSIE') > -1 && to.path === '/editor') {
-      Vue.prototype.$alert('vue-quill-editor组件不兼容IE10及以下浏览器，请使用更高版本的浏览器查看', '浏览器不兼容通知', {
-        confirmButtonText: '确定'
-      });
-    } else {
-      next();
-    }
+    ElementUI.Message.error('登录信息失效, 请重新登录!')
+    next()
   }
+})
 
-});
 Vue.use(Viewer, {
   defaultOptions: {
     zIndex: 9999
   }
-});
+})
+
 const i18n = new VueI18n({
   locale: 'zh',
 });
@@ -83,8 +68,7 @@ new Vue({
     return {
       //URL: 'http://10.0.3.67:8089',
       URL: 'http://localhost:8089',
-
     }
   },
   render: h => h(App)
-}).$mount('#app');
+}).$mount('#app')
