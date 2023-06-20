@@ -270,7 +270,7 @@ export default {
               this.$message.error("两次密码输入不一致，请重新输入！")
             } else {
               changePassword(this.changePassInfo).then(res => {
-                if (res.data.code === '200') {
+                if (res.status === '200') {
                   this.$message.success('更新成功,需要重新登录');
                   localStorage.clear();
                   this.$router.push("/login");
@@ -296,7 +296,7 @@ export default {
     },
     getInitData() {
       getPersonInfo(this.userId).then(res => {
-        if (res.code === '200') {
+        if (res.status === '200') {
           let userData = res.data
           this.personInfo.username = userData.username
           this.personInfo.email = userData.email
@@ -329,7 +329,7 @@ export default {
             this.edit_personInfo.uid = this.userId
 
             updatePersonInfo(this.edit_personInfo).then(res => {
-              if (res.data.code === '200') {
+              if (res.status === '200') {
                 this.$message.success('更新个人信息成功')
                 this.reload()
               }

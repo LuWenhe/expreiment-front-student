@@ -1,17 +1,19 @@
 <template>
-  <el-container class="container-box">
+  <el-container class="index-container">
     <!-- 主页导航栏 -->
-    <el-header class="container-box-head">
-      <NavigationBar :activeIndex="activeIndex2"></NavigationBar>
+    <el-header class="index-header">
+      <NavigationBar :activeIndex="activeIndex"></NavigationBar>
     </el-header>
     <!-- 主页内容 -->
-    <el-main>
+    <el-main class="index-main">
       <router-view/>
     </el-main>
     <!-- 主页尾部 -->
-    <el-footer style="background-color:#274B9F;height: 100px">
-      <span style="margin-left: 36%;color: #94BDC0;font-size: 20px">Copyright©2022-2023 南京信息工程大学</span>
-      <br><span style="margin-left: 45%;color: #94BDC0;font-size: 20px">中国气象局气象干部培训学院</span>
+    <el-footer class="index-footer">
+      <el-row class="copyright">
+        <p>Copyright©2023-2024 南京信息工程大学</p>
+        <p>中国气象局气象干部培训学院</p>
+      </el-row>
     </el-footer>
   </el-container>
 </template>
@@ -25,7 +27,6 @@ export default {
   data() {
     return {
       activeIndex: '1',
-      activeIndex2: '1',
     }
   },
   methods: {
@@ -47,32 +48,37 @@ export default {
     let index = this.$route.path.replace("/", "")
 
     if (index === '/index/mainPage') {
-      this.activeIndex2 = '1';
+      this.activeIndex = '1';
     } else if (index === '/index/allLesson') {
-      this.activeIndex2 = '2';
+      this.activeIndex = '2';
     } else if (index === '/index/teachTool') {
-      this.activeIndex2 = '3'
+      this.activeIndex = '3'
     } else if (index === '/index/OnlineIDE') {
-      this.activeIndex2 = '5'
+      this.activeIndex = '5'
     }
   }
 }
 </script>
 
 <style>
-.container-box {
-  height: 100%;
+.index-container {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
-.container-box-head {
+.index-main {
+  padding: 0;
+  margin: 20px auto;
+  width: 60%;
+}
+
+.index-header {
   display: flex;
   justify-content: space-around;
   padding: 0;
-}
-
-.head {
-  width: 100%;
-  background-color: #545c64
 }
 
 .head img {
@@ -84,17 +90,19 @@ export default {
   z-index: 1;
   font-size: 20px;
   color: white
-
 }
 
-.user-name {
-  margin-left: 10px;
+.index-footer {
+  background-color: #274B9F;
+  height: 120px;
+  color: #94BDC0;
+  font-size: 20px;
 }
 
-.user-avator {
-  margin-left: 20px;
+.copyright {
+  margin: 0 auto;
+  text-align: center;
 }
-
 </style>
 
 

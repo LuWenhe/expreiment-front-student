@@ -16,7 +16,8 @@
           <br>
           <div v-for="(item1,index) in item.sonChapterList" :key="index">
             <div style='float: left;'>
-              <span> {{item1.son_no}} &nbsp;{{item1.son_name}} &nbsp;&nbsp; <button @click="toPlayVideo(item1.mp4)"> <i class="el-icon-video-play">视频</i> </button>
+              <span> {{item1.son_no}} &nbsp;{{item1.son_name}} &nbsp;&nbsp;
+                <button @click="toPlayVideo(item1.mp4)"> <i class="el-icon-video-play">视频</i> </button>
               <button @click="downPPT(item1.ppt)"> <i class="el-icon-download">PPT</i> </button>
               </span>
             </div>
@@ -91,7 +92,7 @@ export default {
     },
     getChapterInfoByLessonId(){
       getChapterInfo(this.lesson_id).then(res => {
-        if (res.code === '200') {
+        if (res.status === '200') {
           this.chapter = res.data
         } else {
           this.$message.error("加载失败")

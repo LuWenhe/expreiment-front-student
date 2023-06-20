@@ -34,15 +34,15 @@ export default {
   created() {
     this.son_id = this.$route.query.sonId
     this.getGuideBook()
-
-    setTimeout(() => {
-      this.loading = false
-    }, 2000)
   },
   methods: {
     getGuideBook() {
       getGuideBook(this.son_id).then(res => {
-        if (res.code === '200') {
+        if (res.status === '200') {
+          if (res.data.guide_book === null) {
+            res.data.guide_book = ''
+          }
+
           this.guideBook = res.data.guide_book
         }
       })

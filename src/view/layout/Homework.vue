@@ -76,11 +76,12 @@ export default {
     },
     runCode() {
       let codeInput = this.$refs.mycode.codemirror.getValue()
+      console.log(codeInput)
       localStorage.setItem("codeInput", this.$refs.mycode.codemirror.getValue())
 
       onlineIDE(codeInput).then(res => {
-        if (res.data.code === '200') {
-          this.resultString = res.data.data;
+        if (res.status === '200') {
+          this.resultString = res.data;
         } else {
           this.resultString = '运行异常'
         }

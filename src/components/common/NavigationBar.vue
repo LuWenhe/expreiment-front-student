@@ -16,7 +16,7 @@
       <el-menu-item index="/index/allLesson">全部课程</el-menu-item>
       <el-menu-item index="/index/teachTool">教学工具</el-menu-item>
       <el-menu-item index="/index/onlineIDE">在线编码工具</el-menu-item>
-      <el-avatar :src="myHeader" style="position: absolute;margin-left:30%;margin-top: 10px"></el-avatar>
+<!--      <el-avatar :src="myHeader" style="position: absolute;margin-left:30%;margin-top: 10px"></el-avatar>-->
       <el-dropdown style="position: absolute;margin-left: 34%;margin-top: 20px" class="user-name" trigger="click" @command="handleCommand">
         <span class="el-dropdown-link" style="color: white;font-size: 15px">
             {{ name }}

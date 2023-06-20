@@ -85,7 +85,7 @@ export default {
   methods: {
     loadLessonInfo() {
       getLessonInfo(this.lessonId).then(res => {
-        if (res.code === '200') {
+        if (res.status === '200') {
           this.lesson = res.data
         }
       })

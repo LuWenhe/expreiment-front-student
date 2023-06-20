@@ -40,8 +40,6 @@ router.beforeEach((to, from, next) =>{
   document.title = `${to.meta.title} | 学员实训平台`
   let token = localStorage.getItem('token')
 
-  console.log(from.path)
-
   // 如果有登录状态, 则直接跳转, 否则跳转到登录页面
   if (token) {
     next()

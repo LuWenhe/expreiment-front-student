@@ -107,11 +107,13 @@ export default {
                 login(this.user).then(res => {
                   let data = res.data
 
-                  if (res.code === '200') {
+                  if (res.status === '200') {
                     this.$message.success('登录成功')
                     localStorage.setItem('token', res.token)
                     localStorage.setItem('user_id', data.userId)
+                    localStorage.setItem('name', data.username)
                     localStorage.setItem('role', data.roleName)
+                    localStorage.setItem('avatar_image', data.avatarImage)
 
                     this.$router.push('/index/mainPage')
                   } else {
@@ -122,7 +124,7 @@ export default {
                 // let path = this.$root.URL + '/user/frontLogin';
                 // axios.post(path, this.user).then(res => {
                 //   console.log(res.data);
-                //   if (res.data.code === '200') {
+                //   if (res.status === '200') {
                 //     this.$message.success('登录成功');
                 //     localStorage.setItem("name", res.data.data.username);
                 //     localStorage.setItem("user_id", res.data.data.user_id);

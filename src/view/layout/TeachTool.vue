@@ -64,7 +64,7 @@ export default {
         this.$message.error("请输入搜索信息！")
       } else {
         getToolsByName(this.toolName).then(res => {
-          if (res.code === '200') {
+          if (res.status === '200') {
             this.tooList = res.data.data;
           }
         })
@@ -76,7 +76,7 @@ export default {
       let pageSize = this.pageInfo.pageSize
 
       getAllTools(currentPage, pageSize).then(res => {
-        if (res.code === '200') {
+        if (res.status === '200') {
           this.tooList = res.data.list
         }
       })

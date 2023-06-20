@@ -1,5 +1,6 @@
 import axios from 'axios'
-let is_baseURL = 'http://localhost:8089'
+// let is_baseURL = 'http://101.37.23.223:8090'
+let is_baseURL = 'http://localhost:8090'
 
 // 创建axios实例
 export function request(config) {

@@ -1,38 +1,34 @@
 <template>
   <el-row class="home-container">
-    <el-row>
-      <el-col style="width:100%;">
-        <!--div居中设置 -->
-        <div class="lunbo_box" style="margin:0 auto;width:1200px;">
-          <el-carousel class="lunbo" style="width: 1200px;height: auto;border-radius: 20px;">
-            <el-carousel-item v-for="(item, index) in bannerList" :key="index">
-              <img class="lunboimg" :src=item.banner_url alt="" style="width: 100%;height: 100%;">
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-      </el-col>
+    <el-row class="banner-box">
+      <el-carousel class="home-carousel">
+        <el-carousel-item class="home-carousel-item" v-for="(item, index) in bannerList" :key="index">
+          <img class="lunboimg" :src=item.banner_url alt="" style="width: 100%;height: 100%;">
+        </el-carousel-item>
+      </el-carousel>
     </el-row>
-    <el-row class="lesson_info" style="margin:0 auto; width: 1200px;height: auto">
+    <el-row class="lesson-box">
       <el-row>
-        <div class="contain_title">
+        <el-row class="contain_title">
           <div class="titleInnerAidLine1"></div>
           <div class="mainTitle">精品课程</div>
-        </div>
-        <el-col :xs="14" :sm="14" :md="14" :lg="6" :xl="6" :span="6" v-for="(item,index) in lesson_list" :key="index">
-          <el-card style="width: 250px;height: 350px;margin-bottom: 25px; " shadow="hover">
-            <router-link :to="{name:'lessonInfo',query:{'lessonId':item.lessonId}}">
-              <img :src="item.pic_url" class="image" style="width: 100%;height: 250px">
-            </router-link>
-            <div style="padding: 14px;">
-              <span>{{ item.lesson_name }}</span>
-              <br>
-              <span style="font-size: 15px">授课老师：{{ item.teacher_name }}</span>
-            </div>
-          </el-card>
-        </el-col>
+        </el-row>
+        <el-row class="lesson-list">
+          <el-row class="lesson-item" v-for="(item,index) in lesson_list" :key="index">
+            <el-card class="lesson-item-card">
+              <router-link :to="{name:'lessonInfo',query:{'lessonId':item.lessonId}}">
+                <img :src="item.pic_url" class="image" style="width: 100%;height: 250px">
+              </router-link>
+              <div style="padding: 14px;">
+                <span>{{ item.lesson_name }}</span>
+                <br>
+                <span style="font-size: 15px">授课老师：{{ item.teacher_name }}</span>
+              </div>
+            </el-card>
+          </el-row>
+        </el-row>
       </el-row>
     </el-row>
-
     <router-view/>
   </el-row>
 </template>
@@ -77,6 +73,29 @@ export default {
 .home-container {
   width: 100%;
   height: 100%;
+}
+
+.home-container {
+  border-radius: 20px;
+}
+
+.lesson-box {
+  margin-top: 10px;
+}
+
+.lesson-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lesson-item {
+  margin-left: 25px;
+}
+
+.lesson-item-card {
+  width: 250px;
+  height: 350px;
+  margin-bottom: 25px;
 }
 
 .titleInnerAidLine1 {
@@ -128,6 +147,10 @@ export default {
 
 .clearfix:after {
   clear: both
+}
+
+.home-carousel {
+  border-radius: 20px;
 }
 </style>
 
