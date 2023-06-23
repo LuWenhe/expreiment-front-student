@@ -13,8 +13,7 @@
     </el-row>
     <el-row class="jupyter-box-right">
       <div style="overflow:hidden">
-        <iframe class="iframe-box"
-                :src='$route.query.jupyterUrl' frameborder='0' scrolling='auto'></iframe>
+        <iframe class="iframe-box" :src='$route.query.jupyterUrl' frameborder='0' scrolling='auto'></iframe>
       </div>
     </el-row>
   </el-row>

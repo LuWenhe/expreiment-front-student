@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div style="display: flex;justify-content: left;margin-left:150px;margin-top: 50px">
+  <el-row class="lesson-container">
+    <el-row class="input-group">
       <el-select v-model="value" placeholder="请选择" @change="getLessonOptions()">
         <el-option
             v-for="item in options"
@@ -16,15 +16,11 @@
           v-model="searchName">
       </el-input>
       <el-button style="margin-left: 50px" type="primary" @click="searchLesson()">搜索</el-button>
-    </div>
-    <div style="height: 50px">
-
-    </div>
-    <div style="width: 80%;margin: 0 auto">
-      <el-row>
-        <el-col :xs="14" :sm="14" :md="14" :lg="6" :xl="6" :span="6" v-for="(item,index) in lesson_list" :key="index">
-
-          <el-card style="width: 250px;height: 350px;margin-bottom: 25px; " shadow="hover">
+    </el-row>
+    <el-row class="lesson-box">
+      <el-row class="lesson-list">
+        <el-row class="lesson-item" v-for="(item,index) in lesson_list" :key="index">
+          <el-card class="lesson-item-card">
             <router-link :to="{name:'lessonInfo',query:{lessonId:item.lessonId}}">
               <img :src="item.pic_url" class="image" style="width: 100%;height: 250px">
             </router-link>
@@ -34,11 +30,12 @@
               <span style="font-size: 15px">授课老师：{{ item.teacher_name }}</span>
             </div>
           </el-card>
-        </el-col>
+        </el-row>
       </el-row>
-    </div>
-  </div>
+    </el-row>
+  </el-row>
 </template>
+
 <script>
 import {getAllLessons, getLessonsByName} from "@/network/api/lesson"
 
@@ -98,5 +95,34 @@ export default {
   height: 100%;
   margin-left: 15%;
   margin-top: 1%;
+}
+
+.lesson-container {
+  width: 100%;
+  height: 100%;
+}
+
+.input-group {
+  display: flex;
+  justify-content: left;
+}
+
+.lesson-box {
+  margin-top: 10px;
+}
+
+.lesson-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.lesson-item {
+  margin-left: 45px;
+}
+
+.lesson-item-card {
+  width: 250px;
+  height: 350px;
+  margin-bottom: 25px;
 }
 </style>

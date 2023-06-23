@@ -71,8 +71,8 @@ export default {
 
 .index-main {
   padding: 0;
-  margin: 20px auto;
-  width: 60%;
+  margin: 10px auto;
+  width: 80%;
 }
 
 .index-header {

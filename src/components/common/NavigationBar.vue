@@ -9,7 +9,7 @@
         background-color="#274B9F"
         text-color="#fff"
         active-text-color="#ffd04b"
-        style="margin-top: 0%;width: 100%;"
+        style="margin-top: 0;width: 100%;"
         router
     >
       <el-menu-item index="/index/mainPage" style="margin-left: 25%">首页</el-menu-item>

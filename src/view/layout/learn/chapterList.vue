@@ -1,40 +1,31 @@
 <template>
-  <div>
-    <div v-for="(item,index) in chapter" :key="index">
-      <div class='secondCard'>
-        <br>
-        <div>
-          <div style='float: left;margin-left: 20px'><span class='chapter-index'>{{ item.chapter_no }}</span> &nbsp;<span><b>{{item.chapter_name}}</b></span></div>
-          <br>
-        </div>
-        <br>
-        <hr>
-        <br>
-        <div style='margin-left: 20px'>
-          <span>{{item.description}}</span>
-          <br>
-          <br>
-          <div v-for="(item1,index) in item.sonChapterList" :key="index">
-            <div style='float: left;'>
-              <span> {{item1.son_no}} &nbsp;{{item1.son_name}} &nbsp;&nbsp;
-                <button @click="toPlayVideo(item1.mp4)"> <i class="el-icon-video-play">视频</i> </button>
-              <button @click="downPPT(item1.ppt)"> <i class="el-icon-download">PPT</i> </button>
-              </span>
-            </div>
-              <div style='float: right'>
-                <el-button  @click="toJupyterPage(item1.son_id)"><i class="el-icon-edit">jupyter实验</i></el-button>
-              </div>
-            <br>
-            <br>
-          </div>
-          <br>
-          <br>
-        </div>
-      </div>
-      <br>
-      <br>
-    </div>
-  </div>
+  <el-row class="chapter-container">
+    <el-row class="son-chapter-box" v-for="(item, index) in chapter" :key="index">
+      <!-- 章节标题 -->
+      <el-row class="chapter-title">
+        <span class='chapter-number'>{{ item.chapter_no }}</span>
+        <span><b>{{ item.chapter_name }}</b></span>
+      </el-row>
+      <!-- 章节内容 -->
+      <el-row v-if='item.sonChapterList.length > 0' class="son-chapter">
+        <el-row class="son-chapter-item" v-for="(item1,index) in item.sonChapterList" :key="index">
+          <el-row class="left">
+            <span>{{ item1.son_no }} {{ item1.son_name }}</span>
+          </el-row>
+          <el-row class="right">
+            <el-button size="small" @click="toPlayVideo(item1.mp4)"> <i class="el-icon-video-play">视频</i> </el-button>
+            <el-button size="small" @click="downPPT(item1.ppt)"> <i class="el-icon-download">PPT</i> </el-button>
+            <el-button size="small" @click="toJupyterPage(item1.son_id)">
+              <i class="el-icon-edit">jupyter实验</i>
+            </el-button>
+          </el-row>
+        </el-row>
+      </el-row>
+      <el-row v-else class='son-chapter'>
+        <span>无数据</span>
+      </el-row>
+    </el-row>
+  </el-row>
 </template>
 
 <script>
@@ -46,8 +37,8 @@ export default {
   props: ['lessonId'],
   data() {
     return {
-      lesson_id : this.lessonId,    // 把传过来的值赋值给新的变量
-      chapter:[],
+      lesson_id: this.lessonId,    // 把传过来的值赋值给新的变量
+      chapter: [],
     }
   },
   created() {
@@ -59,16 +50,16 @@ export default {
     }
   },
   methods: {
-    toPlayVideo(mp4){
-      this.$router.push({name:'playVideo',query:{mp4:mp4}})
+    toPlayVideo(mp4) {
+      this.$router.push({name: 'playVideo', query: {mp4: mp4}})
     },
-    downPPT(ppt){
+    downPPT(ppt) {
       window.open(ppt)
     },
-    toWebIDEPage(exp_url,son_id){
+    toWebIDEPage(exp_url, son_id) {
       this.$router.push({name: "ToWebIDEPage", query: {isHasUrl: false, jupterUrl: exp_url, sonId: son_id}});
     },
-    toJupyterPage(son_id){
+    toJupyterPage(son_id) {
       let sonUserExpObj = {
         user_id: localStorage.getItem("user_id"),
         son_id: son_id,
@@ -90,7 +81,7 @@ export default {
         })
       })
     },
-    getChapterInfoByLessonId(){
+    getChapterInfoByLessonId() {
       getChapterInfo(this.lesson_id).then(res => {
         if (res.status === '200') {
           this.chapter = res.data
@@ -104,13 +95,18 @@ export default {
 </script>
 
 <style scoped>
-.secondCard{
-  background-color: white;
-  height: auto;
-  width: 60%;
-  margin-left: 20px;
+.chapter-container {
+  display: flex;
+  flex-direction: column;
 }
-.chapter-index{
+
+.chapter-title {
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+.chapter-number {
   display: inline-block;
   line-height: 30px;
   text-align: center;
@@ -118,6 +114,26 @@ export default {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-right: 12px;
+  margin: 0 10px;
+}
+
+.son-chapter {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.son-chapter-item {
+  display: flex;
+  height: 35px;
+  align-items: center;
+}
+
+.son-chapter-item .left {
+  flex: 0.7;
+}
+
+.son-chapter-item .right {
+  flex: 0.4;
 }
 </style>
