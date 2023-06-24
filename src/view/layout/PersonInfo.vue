@@ -291,9 +291,6 @@ export default {
       this.hideUpload = true
       this.editInfoDiag = true
     },
-    publishPost() {
-      this.$router.push("/writePost")
-    },
     getInitData() {
       getPersonInfo(this.userId).then(res => {
         if (res.status === '200') {
@@ -306,8 +303,9 @@ export default {
           this.edit_personInfo.email = userData.email
           this.edit_personInfo.phone = userData.phone
 
-          let avatarImage = userData.avatar_image.split(',')[0]
-          this.fileListFront.push({name: 'xxx', url: avatarImage})   //在el-upload中回显后台返回的地址
+          if (userData.avatar_image !== null) {
+            this.fileListFront.push({name: 'xxx', url: userData.avatar_image})   //在el-upload中回显后台返回的地址
+          }
         }
       })
     },
@@ -431,19 +429,16 @@ export default {
 
 .up_box {
   width: 70%;
-  margin: 0 auto;
   height: 250px;
   background-color: #FFFFFF;
-  margin-top: 50px;
-
+  margin: 10px auto 10px;
 }
 
 .down_box {
   width: 70%;
-  margin: 0 auto;
   height: 100%;
   background-color: #FFFFFF;
-  margin-top: 50px;
+  margin: 10px auto 0;
 }
 
 .space1 {

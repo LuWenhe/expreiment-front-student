@@ -9,6 +9,13 @@ export const getAllLessons = (activeName) => {
     }
   })
 }
+export const getLessonsByUserIdAndTagId = (pageRequest) => {
+  return request({
+    method: 'POST',
+    url: '/frontLesson/getLessons',
+    data: pageRequest
+  })
+}
 export const getLessonsByUserId = (userId) => {
   return request({
     method: 'GET',
