@@ -2,7 +2,7 @@ import {request} from "@/network/request"
 export const login = (userObj) => {
   return request({
     method: 'POST',
-    url: '/user/login',
+    url: '/user/frontLogin',
     data: userObj
   })
 }

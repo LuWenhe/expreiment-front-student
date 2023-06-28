@@ -112,8 +112,6 @@ export default {
                     localStorage.setItem('token', res.token)
                     localStorage.setItem('user_id', data.userId)
                     localStorage.setItem('name', data.username)
-                    localStorage.setItem('role', data.roleName)
-                    localStorage.setItem('avatar_image', data.avatarImage)
 
                     this.$router.push('/index/mainPage')
                   } else {
@@ -121,21 +119,6 @@ export default {
                   }
                 })
 
-                // let path = this.$root.URL + '/user/frontLogin';
-                // axios.post(path, this.user).then(res => {
-                //   console.log(res.data);
-                //   if (res.status === '200') {
-                //     this.$message.success('登录成功');
-                //     localStorage.setItem("name", res.data.data.username);
-                //     localStorage.setItem("user_id", res.data.data.user_id);
-                //     localStorage.setItem("role", res.data.data.role);
-                //     localStorage.setItem("token", res.data.token);
-                //     localStorage.setItem("avatar_image", res.data.data.avatar_image)
-                //     this.$router.push('/frontAdmin/mainPage');
-                //   } else {
-                //     this.$message.error("登录失败");
-                //   }
-                // })
                 loading.close()
               }, 2000)
             } else {

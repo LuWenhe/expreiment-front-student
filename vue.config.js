@@ -13,15 +13,6 @@ module.exports = {
       .set('assets', resolve('src/assets'))
       .set('styles', resolve('src/assets/styles'))
   },
-  // pwa: {
-  //   iconPaths: {
-  //     favicon32: 'favicon.ico',
-  //     favicon16: 'favicon.ico',
-  //     appleTouchIcon: 'favicon.ico',
-  //     maskIcon: 'favicon.ico',
-  //     msTileImage: 'favicon.ico'
-  //   }
-  // },
   // 其他配置....
   configureWebpack: (config) => {
     if (process.env.NODE_ENV === 'production') {// 为生产环境修改配置...

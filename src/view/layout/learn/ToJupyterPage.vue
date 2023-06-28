@@ -2,7 +2,6 @@
   <el-row class="jupyter-box">
     <el-row class="jupyter-box-left">
       <mavon-editor
-          style="margin-right: 2%"
           v-model=guideBook
           ref="md"
           :editable="false"
@@ -12,9 +11,9 @@
       />
     </el-row>
     <el-row class="jupyter-box-right">
-      <div style="overflow:hidden">
+      <el-row style="overflow:hidden">
         <iframe class="iframe-box" :src='$route.query.jupyterUrl' frameborder='0' scrolling='auto'></iframe>
-      </div>
+      </el-row>
     </el-row>
   </el-row>
 </template>
@@ -61,6 +60,8 @@ export default {
 
 .jupyter-box-left {
   flex: 1;
+  overflow: scroll;
+  margin-right: 10px;
 }
 
 .jupyter-box-right {
@@ -68,8 +69,8 @@ export default {
 }
 
 .iframe-box {
-  width: 90%;
+  width: 100%;
   height: 1000px;
-  margin-top: -80px;
+  margin-top: -35px;
 }
 </style>
