@@ -122,7 +122,7 @@ export default {
                 loading.close()
               }, 2000)
             } else {
-              console.log('error submit!!');
+              console.log('error submit!!')
             }
 
           })

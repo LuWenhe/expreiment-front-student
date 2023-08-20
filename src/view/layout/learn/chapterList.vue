@@ -4,18 +4,18 @@
       <!-- 章节标题 -->
       <el-row class="chapter-title">
         <span class='chapter-number'>{{ item.chapter_no }}</span>
-        <span><b>{{ item.chapter_name }}</b></span>
+        <span><b>{{ item.name }}</b></span>
       </el-row>
       <!-- 章节内容 -->
       <el-row v-if='item.sonChapterList.length > 0' class="son-chapter">
-        <el-row class="son-chapter-item" v-for="(item1,index) in item.sonChapterList" :key="index">
+        <el-row class="son-chapter-item" v-for="(sonItem, index) in item.sonChapterList" :key="index">
           <el-row class="left">
-            <span>{{ item1.son_no }} {{ item1.son_name }}</span>
+            <span>{{ sonItem.son_no }} {{ sonItem.name }}</span>
           </el-row>
           <el-row class="right">
-            <el-button size="small" @click="toPlayVideo(item1.mp4)"> <i class="el-icon-video-play">视频</i> </el-button>
-            <el-button size="small" @click="downPPT(item1.ppt)"> <i class="el-icon-download">PPT</i> </el-button>
-            <el-button size="small" @click="toJupyterPage(item1.son_id)">
+            <el-button size="small" @click="toPlayVideo(sonItem.mp4)"> <i class="el-icon-video-play">视频</i> </el-button>
+            <el-button size="small" @click="downPPT(sonItem.ppt)"> <i class="el-icon-download">PPT</i> </el-button>
+            <el-button size="small" @click="toJupyterPage(sonItem.id)">
               <i class="el-icon-edit">jupyter实验</i>
             </el-button>
           </el-row>
@@ -66,20 +66,22 @@ export default {
         lessonId: this.lesson_id
       }
 
-      getDynamicExpUrl(sonUserExpObj).then(res => {
-        let dataObj = res.data
-        let jupyterUrl = dataObj.exp_url
-        let id = dataObj.id
+      console.log(son_id)
 
-        this.$router.push({
-          name: 'ToJupyterPage',
-          query: {
-            jupyterUrl: jupyterUrl,
-            id: id,
-            sonId: son_id
-          }
-        })
-      })
+      // getDynamicExpUrl(sonUserExpObj).then(res => {
+      //   let dataObj = res.data
+      //   let jupyterUrl = dataObj.exp_url
+      //   let id = dataObj.id
+      //
+      //   this.$router.push({
+      //     name: 'ToJupyterPage',
+      //     query: {
+      //       jupyterUrl: jupyterUrl,
+      //       id: id,
+      //       sonId: son_id
+      //     }
+      //   })
+      // })
     },
     getChapterInfoByLessonId() {
       getChapterInfo(this.lesson_id).then(res => {
